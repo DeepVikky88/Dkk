@@ -6,22 +6,22 @@ from pyrogram.types import InlineKeyboardMarkup, InputMediaPhoto, Message
 from pytgcalls.exceptions import NoActiveGroupCall
 
 import config
-from PURVIMUSIC import Apple, Resso, SoundCloud, Spotify, Telegram, YouTube, app
-from PURVIMUSIC.core.call import PURVI
-from PURVIMUSIC.utils import seconds_to_min, time_to_seconds
-from PURVIMUSIC.utils.channelplay import get_channeplayCB
-from PURVIMUSIC.utils.decorators.language import languageCB
-from PURVIMUSIC.utils.decorators.play import PlayWrapper
-from PURVIMUSIC.utils.formatters import formats
-from PURVIMUSIC.utils.inline import (
+from AviaxMusic import Apple, Resso, SoundCloud, Spotify, Telegram, YouTube, app
+from AviaxMusic.core.call import Aviax
+from AviaxMusic.utils import seconds_to_min, time_to_seconds
+from AviaxMusic.utils.channelplay import get_channeplayCB
+from AviaxMusic.utils.decorators.language import languageCB
+from AviaxMusic.utils.decorators.play import PlayWrapper
+from AviaxMusic.utils.formatters import formats
+from AviaxMusic.utils.inline import (
     botplaylist_markup,
     livestream_markup,
     playlist_markup,
     slider_markup,
     track_markup,
 )
-from PURVIMUSIC.utils.logger import play_logs
-from PURVIMUSIC.utils.stream.stream import stream
+from AviaxMusic.utils.logger import play_logs
+from AviaxMusic.utils.stream.stream import stream
 from config import BANNED_USERS, lyrical
 
 
@@ -105,6 +105,7 @@ async def play_commnd(
                     forceplay=fplay,
                 )
             except Exception as e:
+                print(f"Error: {e}")
                 ex_type = type(e).__name__
                 err = e if ex_type == "AssistantErr" else _["general_2"].format(ex_type)
                 return await mystic.edit_text(err)
@@ -149,6 +150,7 @@ async def play_commnd(
                     forceplay=fplay,
                 )
             except Exception as e:
+                print(f"Error: {e}")
                 ex_type = type(e).__name__
                 err = e if ex_type == "AssistantErr" else _["general_2"].format(ex_type)
                 return await mystic.edit_text(err)
@@ -282,20 +284,22 @@ async def play_commnd(
                     forceplay=fplay,
                 )
             except Exception as e:
+                print(f"Error: {e}")
                 ex_type = type(e).__name__
                 err = e if ex_type == "AssistantErr" else _["general_2"].format(ex_type)
                 return await mystic.edit_text(err)
             return await mystic.delete()
         else:
             try:
-                await PURVI.stream_call(url)
+                await Aviax.stream_call(url)
             except NoActiveGroupCall:
                 await mystic.edit_text(_["black_9"])
                 return await app.send_message(
-                    chat_id=config.LOGGER_ID,
+                    chat_id=config.LOG_GROUP_ID,
                     text=_["play_17"],
                 )
             except Exception as e:
+                print(f"Error: {e}")
                 return await mystic.edit_text(_["general_2"].format(type(e).__name__))
             await mystic.edit_text(_["str_2"])
             try:
@@ -312,6 +316,7 @@ async def play_commnd(
                     forceplay=fplay,
                 )
             except Exception as e:
+                print(f"Error: {e}")
                 ex_type = type(e).__name__
                 err = e if ex_type == "AssistantErr" else _["general_2"].format(ex_type)
                 return await mystic.edit_text(err)
@@ -368,6 +373,7 @@ async def play_commnd(
                 forceplay=fplay,
             )
         except Exception as e:
+            print(f"Error: {e}")
             ex_type = type(e).__name__
             err = e if ex_type == "AssistantErr" else _["general_2"].format(ex_type)
             return await mystic.edit_text(err)
@@ -495,6 +501,7 @@ async def play_music(client, CallbackQuery, _):
             forceplay=ffplay,
         )
     except Exception as e:
+        print(f"Error: {e}")
         ex_type = type(e).__name__
         err = e if ex_type == "AssistantErr" else _["general_2"].format(ex_type)
         return await mystic.edit_text(err)
@@ -512,7 +519,7 @@ async def anonymous_check(client, CallbackQuery):
         pass
 
 
-@app.on_callback_query(filters.regex("AnonyPlaylists") & ~BANNED_USERS)
+@app.on_callback_query(filters.regex("AviaxPlaylists") & ~BANNED_USERS)
 @languageCB
 async def play_playlists_command(client, CallbackQuery, _):
     callback_data = CallbackQuery.data.strip()
@@ -593,6 +600,7 @@ async def play_playlists_command(client, CallbackQuery, _):
             forceplay=ffplay,
         )
     except Exception as e:
+        print(f"Error: {e}")
         ex_type = type(e).__name__
         err = e if ex_type == "AssistantErr" else _["general_2"].format(ex_type)
         return await mystic.edit_text(err)
