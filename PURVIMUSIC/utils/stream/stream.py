@@ -5,15 +5,15 @@ from typing import Union
 from pyrogram.types import InlineKeyboardMarkup
 
 import config
-from AnonXMusic import Carbon, YouTube, app
-from AnonXMusic.core.call import PURVI
-from AnonXMusic.misc import db
-from AnonXMusic.utils.database import add_active_video_chat, is_active_chat
-from AnonXMusic.utils.exceptions import AssistantErr
-from AnonXMusic.utils.inline import aq_markup, close_markup, stream_markup
-from AnonXMusic.utils.pastebin import PURVIBin
-from AnonXMusic.utils.stream.queue import put_queue, put_queue_index
-from AnonXMusic.utils.thumbnails import get_thumb
+from PURVIMUSIC import Carbon, YouTube, app
+from PURVIMUSIC.core.call import PURVI
+from PURVIMUSIC.misc import db
+from PURVIMUSIC.utils.database import add_active_video_chat, is_active_chat
+from PURVIMUSIC.utils.exceptions import AssistantErr
+from PURVIMUSIC.utils.inline import aq_markup, close_markup, stream_markup
+from PURVIMUSIC.utils.pastebin import PURVIBin
+from PURVIMUSIC.utils.stream.queue import put_queue, put_queue_index
+from PURVIMUSIC.utils.thumbnails import get_thumb
 
 
 async def stream(
