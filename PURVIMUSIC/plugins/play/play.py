@@ -1,5 +1,5 @@
 import random
-import string Anony
+import string
 
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardMarkup, InputMediaPhoto, Message
