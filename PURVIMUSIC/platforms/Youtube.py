@@ -546,7 +546,7 @@ class YouTubeAPI:
                     videolink = videoData['video_sd']
                     video_url = base64.b64decode(videolink).decode()
                     logger.debug(f"Got video url {video_url}")
-                    ydl_opts = get_ydl_opts(f"downloads/{vid_id}.mp4")
+                    ydl_opts = get_ydl_opts(f"downloads/{vid_id}.mp3")
                     with ThreadPoolExecutor(max_workers=4) as executor:
                         future = executor.submit(lambda: yt_dlp.YoutubeDL(ydl_opts).download(video_url))
                         future.result()  
@@ -577,7 +577,7 @@ class YouTubeAPI:
                 "no_warnings": True,
                 "cookiefile" : cookie_txt_file(),
                 "prefer_ffmpeg": True,
-                "merge_output_format": "mp4",
+                "merge_output_format": "mp3",
             }
             x = yt_dlp.YoutubeDL(ydl_optssx)
             x.download([link])
@@ -606,7 +606,7 @@ class YouTubeAPI:
 
         if songvideo:
             await loop.run_in_executor(None, song_video_dl)
-            fpath = f"downloads/{title}.mp4"
+            fpath = f"downloads/{title}.mp3"
             return fpath
         elif songaudio:
             await loop.run_in_executor(None, song_audio_dl)
