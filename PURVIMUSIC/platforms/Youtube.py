@@ -23,7 +23,7 @@ logger = logging.getLogger(__name__)
 
 # Set API URL and API Key
 API_URL = "https://tgapi.xbitcode.com"
-API_KEY = "xbit_000DEMO0006"
+API_KEY = "xbit_0000557970017716954481"
 
 def cookie_txt_file():
     cookie_dir = f"{os.getcwd()}/cookies"
