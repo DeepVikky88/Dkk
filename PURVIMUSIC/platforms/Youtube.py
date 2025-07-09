@@ -16,7 +16,7 @@ def cookie_txt_file():
     cookie_file = os.path.join(cookie_dir, random.choice(cookies_files))
     return cookie_file
 
-async def download_song(link: str):
+async def YouTubeAPI(link: str):
     def extract_video_id(link: str) -> str:
         try:
             if "v=" not in link:
